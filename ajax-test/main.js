@@ -1,3 +1,5 @@
+
+
 const baseURL = "https://swapi.co/api/";
 
 function getData(type, cb) {
@@ -14,7 +16,14 @@ function getData(type, cb) {
 }
 
 function writeToDocument(type) {
+    var el = document.getElementById("data");
+    el.innerHTML = "";
+
     getData(type, function(data) {
-        document.getElementById("data").innerHTML = data;
+        data = data.results;
+
+        data.forEach(function(item) {
+            el.innerHTML += "<p>" + item.name + "</p>";
+        });
     });
 }
